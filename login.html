@@ -5,19 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <script src="scripts/auth.js" defer></script> <!-- Keep this for local auth -->
+</head>
+<body>
+    <h2>Login</h2>
+
+    <form onsubmit="loginUser(); return false;">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+        
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
+
+
+
+
+
+
+<!-- login.html - User authentication page -->
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="scripts/auth.js" defer></script>
 </head>
 <body>
     <h2>Login</h2>
-    <!-- <div id="g_id_onload"
+     <div id="g_id_onload"
          data-client_id="YOUR_GOOGLE_CLIENT_ID"
          data-context="signin"
          data-ux_mode="popup"
          data-callback="handleGoogleLogin"
          data-auto_prompt="false">
     </div>
-    <div class="g_id_signin" data-type="standard"></div> -->
+    <div class="g_id_signin" data-type="standard"></div> 
 </body>
-</html>
+</html> -->
 
