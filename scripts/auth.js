@@ -11,7 +11,7 @@ function loginUser() {
     
     if (users[email] && users[email] === password) {
         localStorage.setItem("loggedInUser", email);
-        window.location.href = "index.html";
+        window.location.href = "index.html"; // Keep users in the app
     } else {
         alert("Invalid credentials");
     }
@@ -19,12 +19,13 @@ function loginUser() {
 
 // function checkLogin() {
 //     if (!localStorage.getItem("loggedInUser")) {
-//         window.location.href = "login.html";
+//         window.location.href = "login.html"; // Disabled login check
 //     }
 // }
 
 function logoutUser() {
     localStorage.removeItem("loggedInUser");
-    window.location.href = "login.html";
+    // window.location.href = "login.html"; // Disabled logout redirection
+    alert("You have been logged out, but you can still use the app.");
 }
 
