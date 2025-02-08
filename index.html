@@ -1,0 +1,36 @@
+<!-- index.html - Main page for score entry -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-A-Side Score Entry</title>
+    <script src="scripts/auth.js" defer></script>
+    <script src="scripts/app.js" defer></script>
+</head>
+<body onload="checkLogin()">
+    <h2>5-A-Side Score Entry</h2>
+    <button onclick="logoutUser()">Logout</button>
+    
+    <h3>Click on the team that scored:</h3>
+    <button onclick="selectTeam('High Fives')">High Fives</button>
+    <button onclick="selectTeam('Tidal Wave')">Tidal Wave</button>
+    <button onclick="selectTeam('S-Suburbs')">S-Suburbs</button>
+    
+    <div id="goalEntry" class="hidden">
+        <h3>Goal Details</h3>
+        <label>Goal Scorer:</label>
+        <select id="goalScorer"></select>
+        <br>
+        <label>Assist (Optional):</label>
+        <select id="assistPlayer">
+            <option value="None">None</option>
+        </select>
+        <br>
+        <button onclick="recordGoal()">Record Goal</button>
+    </div>
+    
+    <h3>Recorded Goals:</h3>
+    <ul id="goalList"></ul>
+</body>
+</html>

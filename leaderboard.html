@@ -1,0 +1,39 @@
+<!-- leaderboard.html - Leaderboard Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <script src="scripts/auth.js" defer></script>
+    <script src="scripts/leaderboard.js" defer></script>
+</head>
+<body onload="checkLogin(); loadLeaderboard();">
+    <h2>Leaderboard</h2>
+    <button onclick="logoutUser()">Logout</button>
+    
+    <h3>Top Scorers</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Goals</th>
+            </tr>
+        </thead>
+        <tbody id="topScorers"></tbody>
+    </table>
+    
+    <h3>Top Assists</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Assists</th>
+            </tr>
+        </thead>
+        <tbody id="topAssists"></tbody>
+    </table>
+</body>
+</html>

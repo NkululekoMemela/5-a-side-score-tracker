@@ -1,0 +1,30 @@
+<!-- squads.html - Squad Management Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Squads</title>
+    <script src="scripts/auth.js" defer></script>
+    <script src="scripts/squads.js" defer></script>
+</head>
+<body onload="checkLogin()">
+    <h2>Squad Management</h2>
+    <button onclick="logoutUser()">Logout</button>
+    
+    <label for="teamSelect">Select Team:</label>
+    <select id="teamSelect">
+        <option value="High Fives">High Fives</option>
+        <option value="Tidal Wave">Tidal Wave</option>
+        <option value="S-Suburbs">S-Suburbs</option>
+    </select>
+    
+    <br>
+    <label for="playerName">Player Name:</label>
+    <input type="text" id="playerName" placeholder="Enter Player Name">
+    <button onclick="addPlayer()">Add Player</button>
+    
+    <h3>Current Squads:</h3>
+    <div id="squadList"></div>
+</body>
+</html>
