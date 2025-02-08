@@ -17,13 +17,14 @@ function loginUser() {
     }
 }
 
-function checkLogin() {
-    if (!localStorage.getItem("loggedInUser")) {
-        window.location.href = "login.html";
-    }
-}
+// function checkLogin() {
+//     if (!localStorage.getItem("loggedInUser")) {
+//         window.location.href = "login.html";
+//     }
+// }
 
 function logoutUser() {
     localStorage.removeItem("loggedInUser");
     window.location.href = "login.html";
 }
+
