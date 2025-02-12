@@ -1,5 +1,7 @@
 // app.js - Handles team selection, navigation, and match tracking
 
+const GOOGLE_SHEETS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbytXHDfw_nujVmJBIi7kK1z73kFlhEax4DHT4quqUYO6kCC0kOpialIbYFwF9e87SpjLA/exec";
+
 const squads = {
     "High Fives": ["Likhanye", "Barlo (C)", "Chad", "Lloyd", "Bavu"],
     "Tidal Wave": ["Jayd", "Banele", "Theo", "Enoch (C)", "Mdu"],
@@ -11,6 +13,19 @@ let selectedTeam = "";
 let scores = {};
 let timer;
 let startTime;
+let matchID = generateMatchID(); // Generate short match ID
+
+// Function to generate a shorter match ID
+function generateMatchID() {
+    let matchCount = sessionStorage.getItem("matchCount") || 0;
+    matchCount = parseInt(matchCount) + 1; // Increment match count
+
+    const today = new Date().toISOString().split('T')[0]; // Get YYYY-MM-DD format
+    const matchID = `Match_${matchCount}_${today}`;
+
+    sessionStorage.setItem("matchCount", matchCount); // Save match count
+    return matchID;
+}
 
 // Step 1: Update Opponent Selection (Prevents Duplicate Teams)
 function updateOpponentOptions() {
@@ -39,8 +54,10 @@ function startMatch() {
     selectedTeams = { team1, team2 };
     scores = { [team1]: 0, [team2]: 0 };
 
+    matchID = generateMatchID(); // Generate short match ID for this match
     sessionStorage.setItem("selectedTeams", JSON.stringify(selectedTeams));
     sessionStorage.setItem("scores", JSON.stringify(scores));
+    sessionStorage.setItem("matchID", matchID); // Store Match ID
 
     window.location.href = "match.html"; // Proceed to match page
 }
@@ -49,6 +66,7 @@ function startMatch() {
 function loadMatch() {
     selectedTeams = JSON.parse(sessionStorage.getItem("selectedTeams"));
     scores = JSON.parse(sessionStorage.getItem("scores"));
+    matchID = sessionStorage.getItem("matchID") || generateMatchID(); // Retrieve or generate a match ID
 
     if (!selectedTeams) {
         alert("No match in progress! Please start a new match.");
@@ -117,10 +135,11 @@ function cancelGoalEntry() {
     document.getElementById("goalEntry").classList.add("hidden");
 }
 
-// Step 8: Verify & Record Goal
+// Step 8: Verify & Record Goal + Send to Google Sheets
 function recordGoal() {
     const goalScorer = document.getElementById("goalScorer").value;
     const assistPlayer = document.getElementById("assistPlayer").value;
+    const timestamp = new Date().toISOString();
 
     if (goalScorer === assistPlayer) {
         alert("⚠️ Scorer and assist cannot be the same person.");
@@ -147,6 +166,9 @@ function recordGoal() {
     // Clear dropdown selections
     document.getElementById("goalScorer").selectedIndex = 0;
     document.getElementById("assistPlayer").selectedIndex = 0;
+
+    // Send Data to Google Sheets
+    sendToGoogleSheets(selectedTeam, goalScorer, assistPlayer, timestamp, matchID);
 }
 
 // Step 9: Update Scoreboard Display
@@ -155,13 +177,27 @@ function updateScoreboard() {
         `${selectedTeams.team1}: ${scores[selectedTeams.team1]} - ${selectedTeams.team2}: ${scores[selectedTeams.team2]}`;
 }
 
-// Step 9.1: Allow Re-picking the Scoring Side
-function cancelGoalEntry() {
-    document.getElementById("goalEntry").classList.remove("show");
+// Step 10: Send Data to Google Sheets
+function sendToGoogleSheets(team, scorer, assist, timestamp, matchID) {
+    const data = {
+        timestamp: timestamp,
+        team: team,
+        goalScorer: scorer,
+        assist: assist === "None" ? "" : assist,
+        matchID: matchID
+    };
+
+    fetch(GOOGLE_SHEETS_WEB_APP_URL, {
+        method: "POST",
+        mode: "no-cors", // Prevents CORS errors
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    }).catch(error => console.error("Error sending data:", error));
 }
 
-
-// Step 10: Game Timer Update
+// Step 11: Game Timer Update
 function updateTimer() {
     const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
     const minutes = Math.floor(elapsedTime / 60);
@@ -169,10 +205,9 @@ function updateTimer() {
     document.getElementById("gameTimer").textContent = `Elapsed Time: ${minutes}m ${seconds}s`;
 }
 
-// Step 11: End Match & Return to Page 1
+// Step 12: End Match & Return to Page 1
 function endMatch() {
     clearInterval(timer);
     sessionStorage.clear();
     window.location.replace("index.html");
 }
-
