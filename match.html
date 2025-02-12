@@ -1,0 +1,56 @@
+<!-- match.html - Page 2: Match in Progress -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match In Progress</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/app.js" defer></script>
+</head>
+<body class="match-page" onload="loadMatch()">
+    <header>
+        <img src="assets/images/TurfKings_logo.jpg" alt="TurfKings Logo" class="team-logo">
+    </header>
+
+    <div class="content-container">
+        <h2>Match In Progress</h2>
+
+        <!-- Scoreboard -->
+        <h3 id="scoreboard">Loading...</h3>
+
+        <!-- Team Selection for Scoring -->
+        <h3>Select the team that scored:</h3>
+        <button id="team1Btn"></button>
+        <button id="team2Btn"></button>
+
+        <!-- Goal Entry Box (Hidden by Default) -->
+        <div id="goalEntry" class="hidden">
+            <h3 id="goalDetailsTitle">Goal Details</h3>
+            
+            <label>Goal Scorer:</label>
+            <select id="goalScorer"></select>
+            <br>
+
+            <label>Assist (Optional):</label>
+            <select id="assistPlayer">
+                <option value="None">None</option>
+            </select>
+            <br>
+
+            <button onclick="recordGoal()">Record Goal</button>
+            <button onclick="cancelGoalEntry()" class="red-button">Re-pick Team</button> 
+        </div>
+
+        <!-- Recorded Goals -->
+        <h3>Recorded Goals:</h3>
+        <ul id="goalList"></ul>
+
+        <!-- Timer -->
+        <h3 id="gameTimer">Elapsed Time: 0m 0s</h3>
+
+        <!-- End Match Button -->
+        <button onclick="endMatch()" class="red-button">End Match</button>
+    </div>
+</body>
+</html>

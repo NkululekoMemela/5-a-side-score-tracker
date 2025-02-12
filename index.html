@@ -1,36 +1,39 @@
-<!-- index.html - Main page for score entry -->
+<!-- index.html - Page 1: Select Teams -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5-A-Side Score Entry</title>
-    <script src="scripts/auth.js" defer></script>
+    <title>Select Teams</title>
+    <link rel="stylesheet" href="styles/style.css">
     <script src="scripts/app.js" defer></script>
 </head>
-<body> <!-- <body onload="checkLogin()">  -->
-    <h2>5-A-Side Score Entry</h2>
-    <!-- <button onclick="logoutUser()">Logout</button> -->
-    
-    <h3>Click on the team that scored:</h3>
-    <button onclick="selectTeam('High Fives')">High Fives</button>
-    <button onclick="selectTeam('Tidal Wave')">Tidal Wave</button>
-    <button onclick="selectTeam('S-Suburbs')">S-Suburbs</button>
-    
-    <div id="goalEntry" class="hidden">
-        <h3>Goal Details</h3>
-        <label>Goal Scorer:</label>
-        <select id="goalScorer"></select>
-        <br>
-        <label>Assist (Optional):</label>
-        <select id="assistPlayer">
-            <option value="None">None</option>
-        </select>
-        <br>
-        <button onclick="recordGoal()">Record Goal</button>
+<body class="landing-page">
+    <header>
+        <img src="assets/images/TurfKings_logo.jpg" alt="TurfKings Logo" class="team-logo">
+    </header>
+
+    <div class="content-container">
+        <h2 class="white-text">Select Teams for This Match</h2>
+
+        <!-- Horizontally Aligned Team Selection -->
+        <div class="team-selection">
+            <select id="team1" onchange="updateOpponentOptions()">
+                <option value="">Team 1</option>
+                <option value="High Fives">High Fives</option>
+                <option value="Tidal Wave">Tidal Wave</option>
+                <option value="S-Suburbs">S-Suburbs</option>
+            </select>
+
+            <span>vs</span>
+
+            <select id="team2">
+                <option value="">Team 2</option>
+            </select>
+        </div>
+
+        <!-- Proceed Button Below -->
+        <button onclick="startMatch()">Proceed</button>
     </div>
-    
-    <h3>Recorded Goals:</h3>
-    <ul id="goalList"></ul>
 </body>
 </html>

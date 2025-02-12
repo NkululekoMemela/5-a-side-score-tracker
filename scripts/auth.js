@@ -1,21 +1,22 @@
 // auth.js - Handles user authentication
 
-const users = {
-    "user1@example.com": "password123",
-    "user2@example.com": "securepass"
-};
+// Disabling user authentication for now
+// const users = {
+//     "user1@example.com": "password123",
+//     "user2@example.com": "securepass"
+// };
 
-function loginUser() {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+// function loginUser() {
+//     const email = document.getElementById("email").value;
+//     const password = document.getElementById("password").value;
     
-    if (users[email] && users[email] === password) {
-        localStorage.setItem("loggedInUser", email);
-        window.location.href = "index.html"; // Keep users in the app
-    } else {
-        alert("Invalid credentials");
-    }
-}
+//     if (users[email] && users[email] === password) {
+//         localStorage.setItem("loggedInUser", email);
+//         window.location.href = "index.html"; // Keep users in the app
+//     } else {
+//         alert("Invalid credentials");
+//     }
+// }
 
 // function checkLogin() {
 //     if (!localStorage.getItem("loggedInUser")) {
@@ -28,4 +29,3 @@ function logoutUser() {
     // window.location.href = "login.html"; // Disabled logout redirection
     alert("You have been logged out, but you can still use the app.");
 }
-

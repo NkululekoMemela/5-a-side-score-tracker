@@ -1,51 +1,177 @@
-/* style.css - Styles for 5-A-Side Score Tracker */
-
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    text-align: center;
     margin: 0;
     padding: 20px;
-    text-align: center;
 }
 
-h2 {
-    color: #333;
-}
-
-button {
-    padding: 10px 15px;
-    margin: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #28a745;
+/* Landing Page - Dark Blue */
+.landing-page {
+    background-color: #1E3A5F; /* Dark Blue */
     color: white;
+}
+
+/* Ensure Header Text is White */
+.white-text {
+    color: white !important;
+}
+
+/* Match Page - Dark Grey */
+.match-page {
+    background-color: #333333; /* Dark Grey */
+    color: white;
+}
+
+/* Team Logo - Keep Top Left */
+.team-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 80px;
+}
+
+/* Center Content */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
     border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
     border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #45a049;
 }
 
+/* Select Dropdowns */
+select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Popup */
+.popup {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    text-align: center;
+    display: none;
+}
+.popup {
+    display: none;
+}
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Landing Page - Dark Blue */
+.landing-page {
+    background-color: #1E3A5F; /* Dark Blue */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full screen height */
+}
+
+/* Team Logo - Smaller and Top Left */
+.team-logo {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 60px; /* Smaller logo */
+}
+
+/* Center All Content */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 10vh; /* Moves content halfway down the page */
+}
+
+/* Align Team Selection Horizontally */
+.team-selection {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between the dropdowns */
+    margin-bottom: 20px;
+}
+
+/* Match Page - Dark Grey */
+.match-page {
+    background-color: #333333; /* Dark Grey */
+    color: white;
+}
+
+/* Hide Goal Entry Initially */
 .hidden {
     display: none;
 }
 
-input, select {
-    padding: 8px;
-    margin: 5px;
-    font-size: 16px;
+/* Scoreboard Styling */
+#scoreboard {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 15px 0;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-ul li {
-    background: white;
-    padding: 10px;
-    margin: 5px;
+/* Buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+    margin-top: 15px;
 }
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Red Button */
+.red-button {
+    background-color: red;
+}
+
+.red-button:hover {
+    background-color: darkred;
+}
+
+
